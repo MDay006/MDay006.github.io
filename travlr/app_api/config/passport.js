@@ -1,27 +1,47 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
-const Users = require('../models/user');
-const User = mongoose.model("users");
+const User = require('../models/user'); 
 
 passport.use(
-    new LocalStrategy(
+  new LocalStrategy(
     {
-        usernameField: "email",
+      usernameField: "email",
     },
-    async(username, password, done) => {
-        const q = await username.findOne({ email: username }).exec();
-        if (!q) {
-            return done(null, false, {
-                message: "Incorrect Username.",
-            });
+    async (email, password, done) => { 
+      try {
+        const user = await User.findOne({ email: email }).exec(); 
+        
+        if (!user) {
+          return done(null, false, {
+            message: "Incorrect email.",
+          });
         }
-        if (!q.validPassword(password)){
-            return done(null, false, {
-                message: "Incorrect Password.",
-            });
+        
+        const isValid = await user.comparePassword(password); 
+        if (!isValid) {
+          return done(null, false, {
+            message: "Incorrect password.",
+          });
         }
-        return done(null, q);
+        
+        return done(null, user);
+      } catch (error) {
+        return done(error);
+      }
     }
-)
+  )
 );
+
+passport.serializeUser((user, done) => {
+  done(null, user._id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});

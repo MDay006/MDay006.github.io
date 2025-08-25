@@ -11,7 +11,6 @@ headers: {
 
 
 const travel = async function (req,res,next) {
-    // console.log('TRAVEL CONTROLLER BEGIN');
     await fetch(tripsEndpoint, options)
     .then((res) => res.json())
     .then((json) => {

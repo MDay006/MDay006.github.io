@@ -1,57 +1,65 @@
 const express = require("express");
 const router = express.Router();
-const jwt = require('jsonwebtoken'); // Enable JSON Web Tokens
+const jwt = require("jsonwebtoken");
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
 
 const tripsController = require("../controllers/trips");
-const authController = require("../controllers/authentication"); 
+const authController = require("../controllers/authentication");
+const authRoutes = require('./auth');
+const adminRoutes = require('./admin');
 
-// Method to authenticate our JWT
+router.use('/admin', adminRoutes);
+
 function authenticateJWT(req, res, next) {
-// console.log('In Middleware');
-const authHeader = req.headers['authorization'];
-// console.log('Auth Header: ' + authHeader);
-    if(authHeader == null)
-{
-        console.log('Auth Header Required but NOT PRESENT!');
-        return res.sendStatus(401);
-}
-        let headers = authHeader.split(' ');
-    if(headers.length < 1)
-{
-        console.log('Not enough tokens in Auth Header: ' + headers.length);
-        return res.sendStatus(501);
-}
-    const token = authHeader.split(' ')[1];
-// console.log('Token: ' + token);
-    if(token == null)
-{
-        console.log('Null Bearer Token');
-        return res.sendStatus(401);
-}
-// console.log(process.env.JWT_SECRET);
-// console.log(jwt.decode(token));
-    const verified = jwt.verify(token, process.env.JWT_SECRET, (err, verified) => {
-    if(err)
-{
-        return res.sendStatus(401).json('Token Validation Error!');
-}
-        req.auth = verified; // Set the auth paramto the decoded object
-});
-        next(); // We need to continue or this will hang forever
+  const authHeader = req.headers["authorization"];
+
+  if (!authHeader) {
+    return res.sendStatus(401);
+  }
+
+  const headers = authHeader.split(" ");
+  if (headers.length < 2) {
+    return res.sendStatus(401);
+  }
+
+  const token = headers[1]; 
+  if (!token) {
+    return res.sendStatus(401);
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, verified) => {
+    if (err) {
+      console.log("JWT Validation Error:", err.message);
+      return res.status(401).json({ message: "Token Validation Error" });
+    }
+
+    req.auth = verified; 
+    next();
+  });
 }
 
 
-router.route("/register").post(authController.register);
-router.route("/login").post(authController.login);
+router.use('/auth', authRoutes);
+router.use('/admin', adminRoutes);
+router.post("/register", authController.register);
+router.post("/login", authController.login);
 
-    router
-        .route('/trips')
-        .get(tripsController.tripsList) // Get Method routes triplist
-        .post(authenticateJWT, tripsController.tripsAddTrip); // Post Method Adds a Trip 
- // GET Method routes tripsFindByCode - requires parameter
+
+
 router
-    .route('/trips/:tripCode')
-    .get(tripsController.tripsFindByCode) // Get Method routes triplist
-    .put(authenticateJWT, tripsController.tripsUpdateTrip);
+  .route("/trips")
+  .get(tripsController.tripsList)                   
+  .post(authenticateJWT, tripsController.tripsAddTrip); 
+
+
+router
+  .route("/trips/:tripCode")
+  .get(tripsController.tripsFindByCode)          
+  .put(authenticateJWT, tripsController.tripsUpdateTrip)  
+  .delete(authenticateJWT, tripsController.tripsDeleteTrip); 
+
+
+  console.log("AuthController:", authController);
 
 module.exports = router;

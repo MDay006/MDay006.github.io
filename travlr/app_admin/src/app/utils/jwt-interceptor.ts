@@ -1,39 +1,17 @@
-import { Injectable,Provider } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Authentication } from '../services/authentication';
 
-@Injectable()
-export class JwtInterceptor implements HttpInterceptor {
+import { HttpInterceptorFn } from '@angular/common/http';
 
-constructor (
-  private authentication: Authentication
-) { }
+export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
+  const token = localStorage.getItem('jwt'); 
 
-intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  var isAuthAPI: boolean;
-  // console.log('Interceptor::URL' + request.url);
-    if(request.url.startsWith('login') || request.url.startsWith('register')) {
-  isAuthAPI = true;
-}
-else {
-isAuthAPI = false;
-}
-if(this.authentication.isLoggedIn() && !isAuthAPI) {
-let token = this.authentication.getToken();
-// console.log(token);
-const authReq = request.clone({
-setHeaders: {
-Authorization: `Bearer ${token}`
-}
-});
-return next.handle(authReq);
-}
-return next.handle(request);
-}
+  if (token) {
+    const cloned = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    return next(cloned);
+  }
 
-}
-export const authInterceptProvider: Provider =
-{ provide: HTTP_INTERCEPTORS,
-useClass: JwtInterceptor, multi: true };
+  return next(req);
+};
