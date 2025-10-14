@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset='utf-8'><title>Dashboard</title>
+        <link rel='stylesheet' href='css/style.css'>
+    </head>
+    <body>
+        <div class='container'><h1>Dashboard</h1>
+        <div style='display:flex;justify-content:space-between;align-items:center'>
+        <div id='who'></div>
+    <hr>
+        <h2>Items</h2>
+        <div id='itemsContainer'></div>
+        </div>
+
+    <hr>
+        <h2>Add Item</h2>
+        <form id='itemForm'>
+            <input type='hidden' id='itemId'>
+            <label>Name<input id='itemName' required></label>
+            <label>Quantity
+            <input id='itemQty' type='number' value='0' required></label>
+            <button type='submit'>Save</button>
+            <button type='button' id='cancelEdit'>Cancel</button>
+        </form>
+    <hr>
+        <div>
+            <button id="logoutBtn">Logout</button>
+            <div id="adminLink"></div>
+        </div>
+
+        <script src='js/app.js'>
+            const auth = requireAuth();
+            if (auth.user.role === "admin") {
+                document.getElementById("adminLink").innerHTML =`<a href="admin.html"> Go to Admin Panel</a>`;}
+        </script>
+    </body>
+</html>

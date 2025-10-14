@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Admin Panel</h1>
+
+
+  <h2>All Users</h2>
+  <ul id="usersList"></ul> 
+<hr>
+  <h2>All Items</h2>
+  <ul id="items"></ul>
+<hr>
+  <button id="logoutBtn">Logout</button><br>
+  <div><a href="index.html">Go to User Dashboard</a></div>
+
+  <script>
+    const auth = requireAuth();
+    if (auth.user.role !== "admin") {
+      alert("Admins only!");
+      window.location.href = "index.html";
+    }
+
+    async function loadUsers() {
+      const res = await authFetch("/api/users");
+      const users = await res.json();
+      const list = document.getElementById("usersList");
+      list.innerHTML = "";
+      users.forEach(u => {
+        const li = document.createElement("li");
+        li.textContent = `${u.username} (role: ${u.role}, items: ${u.items.length})`;
+        list.appendChild(li);
+      });
+    }
+
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      clearAuth();
+      window.location.href = "login.html";
+    });
+
+    loadUsers();
+  </script>
+</body>
+</html>
