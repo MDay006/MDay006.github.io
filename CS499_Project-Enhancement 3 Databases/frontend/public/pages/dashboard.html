@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CS499 Project</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>My Items Dashboard</h1>
+        <div>
+          <span id="welcomeMessage"></span>
+          <button id="logoutBtn" class="btn-small">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div id="addItemSection">
+        <h2>Add New Item</h2>
+        <form id="itemForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Item Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" id="quantity" name="quantity" min="0" required>
+            </div>
+          </div>
+          <button type="submit" class="btn-success">Add Item</button>
+        </form>
+      </div>
+
+      <div id="itemsSection">
+        <div id="itemsList"></div>
+      </div>
+    </div>
+
+    <div id="adminLink" style="display: none;">
+      <a href="/pages/admin.html" class="btn-small">Admin Panel</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import ItemListComponent from '/components/Items/itemList.js'; 
+    import ApiService from '/services/api.js';
+    import { getUser, isAdmin, clearAuth, isAuthenticated } from '/services/auth.js'; 
+    import { ROUTES } from '/utils/constants.js'; 
+
+    // Check authentication
+    if (!isAuthenticated()) {
+      window.location.href = ROUTES.LOGIN;
+    }
+
+    // Initialize components
+    let itemList;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = getUser();
+      document.getElementById('welcomeMessage').textContent = `Welcome, ${user.username}!`;
+
+      // Show admin link for admins
+      if (isAdmin()) {
+        document.getElementById('adminLink').style.display = 'block';
+      }
+
+      // Initialize item list
+      itemList = new ItemListComponent('itemsList', { allowDelete: true });
+
+      // Handle item form submission
+      document.getElementById('itemForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        
+        try {
+          await ApiService.createItem({
+            name: formData.get('name'),
+            quantity: parseInt(formData.get('quantity'))
+          });
+
+          e.target.reset();
+          itemList.refresh();
+        } catch (error) {
+          alert('Error creating item: ' + error.message);
+        }
+      });
+
+      // Handle logout
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        clearAuth();
+        window.location.href = ROUTES.LOGIN;
+      });
+    });
+  </script>
+</body>
+</html>
