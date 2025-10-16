@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Marc Day E-Portfolio</title>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                Marc Day Capstone E-Portfolio
+            </div>
+            <ul class="nav-links">
+                <a onclick="showBranch('assessment')" class="active" id="nav-assessment">Self Assessment</a>
+                <a onclick="showBranch('code_review')" id="nav-code_review">Code Review</a>
+				<a onclick="showBranch('enhancement')" id="nav-enhancement">Enhancements</a>
+            </ul>
+
+                <button class="dark-mode-toggle" onclick="toggleDarkMode()" id="darkModeBtn">
+                <span id="modeIcon">🌙</span>  <!-- Moon Emoji -->
+            </button>
+
+        </div>
+    </nav>
+
+    <main>
+        <div id ="assessment" class= "branch-content active">
+            <div class="card">
+            <h1>Self Assessment</h1>
+            <br>
+
+            <h2>Self Assessment: </h2>
+                <p>Completing the computer science program and developing my ePortfolio have been instrumental in showcasing my technical strengths, refining my professional goals, 
+                    and preparing me to enter the field as a confident and capable software developer. Throughout this program, I have built a foundation not only in programming and 
+                    software design but also in collaboration, communication, and security awareness—skills that are essential in any professional computing environment. The process 
+                    of curating my ePortfolio allowed me to reflect on my growth, demonstrate the breadth of my technical abilities, and present how I apply computer science principles 
+                    to solve real-world problems.</p>
+                <p>Throughout my coursework, I have gained extensive experience to start collaborating within team environments, both in academic projects and professional settings. 
+                    For example, in team-based development courses, I utilized Agile methodologies and version control systems such as GitHub to setup and coordinate code integration, 
+                    manage feature branches, and resolve merge conflicts efficiently. These experiences taught me the importance of clear communication, consistent documentation, 
+                    and mutual accountability in achieving project milestones. I also learned to about the different roles within a team where sometimes taking the lead in architecture design, 
+                    and other times focusing on backend logic or database implementation, to ensure successful project delivery.</p>
+                <p>Effective communication with stakeholders was another core aspect of my growth. In several courses and projects, I presented technical solutions to both technical and 
+                    non-technical audiences, refining my ability to translate complex concepts into accessible explanations. For example, during a software design course, I created design 
+                    documentation and used flow diagrams to communicate project requirements with instructors and peers as if they were the clients. These experiences enhanced my ability to 
+                    gather feedback, clarify specifications, and maintain alignment between development goals and user expectations, developing key skills that will serve me well in a 
+                    professional development environment.</p>
+                <p>My understanding of data structures and algorithms has been central to my problem-solving approach. I have implemented and optimized algorithms for sorting, searching, 
+                    and data management to improve efficiency and scalability in my code. For instance, in one project, I optimized inventory search functionality using a more efficient search 
+                    algorithm, reducing query times and improving time complexity with Big O notation to O(1) using an algorithm that executes in a constant amount of time reguardless of its 
+                    size vs O(n) where its runtime grows linearly with the size of the inputs, to improve user experience. Proficiency in these concepts has allowed me to write code that is not 
+                    only functional but also optimized and maintainable, which is crucial when working with large data sets or performance-critical applications.</p>
+                <p>In the areas of software engineering and databases, my coursework emphasized full-stack development and system integration. I have designed and implemented applications 
+                    using the MEAN stack (MongoDB, Express, Angular, Node.js), demonstrating skills in both frontend and backend development. I also transitioned from using in-memory data 
+                    storage to a fully integrated MongoDB database, showcasing my ability to design, secure, and manage persistent data systems. These experiences strengthened my understanding 
+                    of RESTful APIs, database schema design, and CRUD operations, while also reinforcing principles of scalability and modular development.</p>
+                <p>Security has been a consistent focus throughout my learning journey. Understanding security best practices—such as role-based access control, input validation, 
+                    and secure authentication—has been vital to ensuring that my applications protect both user data and system integrity. Implementing these security measures in my projects 
+                    taught me to anticipate vulnerabilities and apply defensive programming techniques to prevent unauthorized access or data breaches. This awareness has shaped my personal and 
+                    professional values around responsible coding and ethical software development.</p>
+                <p>Together, with the artifacts presented in my ePortfolio represent the culmination of these skills. Each enhancement demonstrates a different aspect of my technical ability and 
+                    professional growth—from software design and engineering, to algorithmic optimization, to database integration and security. Collectively, they illustrate my evolution from 
+                    developing standalone applications to building full-stack, secure, and user-focused systems. My ePortfolio serves as both a reflection of my academic achievements and a 
+                    professional showcase of my readiness to contribute meaningfully to the computer science field.</p>
+            </div>
+        </div>
+
+        <div id="code_review" class="branch-content">
+            <div class="card">
+                <h1>Artifact</h1>
+                <p>The original artifact used for this review and enhancement is a mobile application that I previously developed in my CS 360: Mobile Architecture and Programming course. 
+                    This project is a mobile-only inventory management application that allows users to manually add items to a list and perform full CRUD (Create, Read, Update, Delete) operations. 
+                    The application includes user authentication features such as login and registration, with all user and item data stored locally in an SQLite database on the device. </p>
+
+                <p>In the accompanying video, I conduct a detailed code review of the original, unenhanced project, highlighting both its strengths and areas for improvement identified during my learning process. 
+                    The demonstration also showcases the app's core functionality and provides an overview of how the underlying database supports its operations.</p>
+                
+                <h2>Original Artifact</h2>
+                <p style="font-size:80%;"><a href="https://github.com/MDay006/MDay006.github.io/tree/Original-Artifact---CS360-Mobile-Architecture-and-Programming/Downloads/CS360Project3%20(1)/CS360Project3" target="_blank">
+                    Link to full repo</a></p>
+                <iframe src="https://github.com/MDay006/MDay006.github.io/tree/Original-Artifact---CS360-Mobile-Architecture-and-Programming/Downloads/CS360Project3%20(1)/CS360Project3" 
+            style="height:540px; width:1020px;" title="Original Artifact"></iframe>
+            </div>
+            <div class="card">
+                <h1>Code Review</h1>
+                <p style="font-size:80%;"><a href="https://youtu.be/QB9cilVyKIE" target="_blank">
+                    Link to video</a></p>
+                <iframe width="1020" height="675"
+                src="https://youtu.be/QB9cilVyKIE">
+                </iframe>
+
+            </div>
+        </div>
+        <div id ="enhancement" class= "branch-content">
+            <div class="card">
+            <h1>Enhancements</h1>
+            <div class="card">
+            <h2>Enhancement One - Software Design and Engineering</h2>
+            
+            <p>For this enhancement, I transformed an existing Java-based mobile application into a full-stack web application using HTML, CSS, and JavaScript. 
+            The goal was to demonstrate my ability to migrate software across platforms while maintaining code reusability, scalability, and adaptability.</p>
+
+            <p>I implemented secure user authentication through a custom auth.js file using JSON Web Tokens (JWT), showcasing my understanding of secure backend development and my ability 
+                to integrate both front-end and back-end functionality. During development, I overcame challenges in syncing front-end and back-end components, strengthening my skills in debugging, 
+                problem-solving, and iterative development. This enhancement laid the groundwork for future database and algorithm integration, representing a key step in my growth as a 
+                full-stack developer. This process provided valuable insight into the complexities of software migration, illustrating that transferring a program between languages and environments 
+                is not a direct one-to-one conversion. It demands thoughtful restructuring, especially on the backend, to maintain consistent performance and reliability. Despite time constraints 
+                and technical challenges, this experience deepened my understanding of software design principles, project planning, and iterative development methodologies.</p>
+
+            <p>In relation to my personal goals and the course outcomes, I believe this enhancement successfully achieved its intended objectives. My primary goal was to transform a mobile-only 
+                application into a functional full-stack web prototype, and through this effort, I demonstrated proficiency in software design, engineering practices, and secure application 
+                development.</p>    
+
+            <p style="font-size:80%;"><a href="https://github.com/MDay006/MDay006.github.io/tree/CS-499-Enhancement-1---Software-Design-and-Engineering/CS499_Project" target="_blank">
+                    Link to full repo</a></p>
+            <iframe src="https://github.com/MDay006/MDay006.github.io/tree/CS-499-Enhancement-1---Software-Design-and-Engineering/CS499_Project" 
+            style="height:540px; width:1020px;" title="CS-499 Enhancement 1"></iframe>
+                </div>
+            <div class="card">  
+            <h2>Enhancement Two - Algorithms and Data Structures</h2>
+
+                <p>For my second enhancement, I expanded the functionality of the artifact by introducing array and map data structures to manage both items and users. Although a database has not 
+                    yet been integrated, I implemented in-memory data handling to simulate backend storage and management. Additionally, I incorporated a new search feature, something the original 
+                    artifact lacked, allowing for efficient data retrieval and improved user experience.</p>
+
+                <p>This enhancement represents the most robust portion of the project. I designed a simple yet effective data structure with integrated search logic to manage users and items. 
+                    Using my app.js file, I established a modular Express backend capable of proper routing and middleware handling, while the api.js file centralized API calls with token-based 
+                    access control and error handling. This work highlights my growing proficiency in implementing algorithms and data structures within a full-stack architecture. Throughout this 
+                    process, I encountered challenges related to frontend and backend integration as well as time constraints. These obstacles deepened my understanding of software design principles 
+                    and reinforced my ability to adapt solutions to real-world development issues.</p>
+
+                <p>In relation to the course outcomes, this enhancement demonstrates my ability to apply data structures and algorithms effectively within a full-stack web prototype. I successfully 
+                    met my objectives by creating a functional and scalable data system that brings the project closer to becoming a fully operational full-stack application.</p>
+
+            <p style="font-size:80%;"><a href="https://github.com/MDay006/MDay006.github.io/tree/CS-499-Enhancement-2---Algorithms-and-Data-Structures" target="_blank">
+                    Link to full repo</a></p>
+            <iframe src="https://github.com/MDay006/MDay006.github.io/tree/CS-499-Enhancement-2---Algorithms-and-Data-Structures" 
+            style="height:540px; width:1020px;" title="CS-499 Enhancement 2"></iframe>
+            </div>
+            <div class="card"> 
+            <h2>Enhancement Three - Databases</h2>
+
+                <p>In my final enhancement, I transitioned the project from an in-memory data structure to a more robust MongoDB database, greatly improving scalability and persistence. 
+                    I implemented a role-based access control system that introduced distinct user and admin roles. Admins now have the ability to edit and manage users and items, while each item 
+                    entry includes user and timestamp tracking for accountability. Additionally, I developed an admin panel that allows administrators to remove users or items as needed.</p>
+
+                <p>To enhance functionality, I built a live search system with improved performance and logic for automatically merging duplicate items by updating their quantities. 
+                    This optimization increased both efficiency and the overall user experience. I maintained a clear separation of concerns across core files—login.js, itemlist.js, auth.js, 
+                    constants.js, and api.js—ensuring organized, modular design and effective use of local storage. I strengthened security by validating user inputs, implementing password hashing, 
+                    and avoiding any hardcoded security risks within the application.</p>
+
+                <p>During development, I encountered challenges with data parsing and file mismatches, which at times resulted in NaN (Not a Number) errors when handling user and item data. 
+                    Through repeated testing and debugging, I successfully identified and resolved these issues, improving overall system reliability.</p>
+
+                <p>The primary goal of this enhancement was to complete the migration from a Java-based mobile application to a fully functional full-stack web application. In alignment with 
+                    the course outcomes, this enhancement demonstrates my ability to design and implement secure, scalable, and maintainable systems. It highlights my initiative and growth in 
+                    applying software engineering principles—particularly in areas of backend integration, data management, and security—culminating in a comprehensive, production-ready full-stack 
+                    solution.</p>
+
+            <p style="font-size:80%;"><a href="https://github.com/MDay006/MDay006.github.io/tree/CS-499-Enhancement-3---Databases"target="_blank">
+                    Link to full repo</a></p>
+            <iframe src="https://github.com/MDay006/MDay006.github.io/tree/CS-499-Enhancement-3---Databases"  
+            style="height:540px; width:1020px;" title="CS-499 Enhancement 3"></iframe>
+            </div> 
+            </div>
+        </div>
+    </main>
+
+    <footer>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h2><a href="mailto:eternaldragon06@gmail.com">Email</a></h2>
+                    </div>
+                    <div class="feature-card">
+                        <h2><a href="https://github.com/MDay006" target="_blank">Github</a></h2>
+                    </div>
+                    <div class="feature-card">
+                        <h2><a href="https://www.linkedin.com/in/marc-day-a27816172" target="_blank">LinkedIn</a></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showBranch(branchName) {
+            const contents = document.querySelectorAll('.branch-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(branchName).classList.add('active');
+            document.getElementById('nav-' + branchName).classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Check for saved dark mode preference
+        const savedMode = localStorage.getItem('darkMode');
+        if (savedMode === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('modeIcon').textContent = '☀️';
+        }
+
+        function toggleDarkMode() {
+            const body = document.body;
+            const icon = document.getElementById('modeIcon');
+            
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.textContent = '☀️'; //Sun emoji
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.textContent = '🌙'; //Moon emoji
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+        
+    </script>
+</body>
+</html>
